@@ -15,20 +15,20 @@
     <div class="flex justify-between items-center border-2 w-full px-8 py-4">
         <div class="flex justify-start items-center gap-2">
             <img class="w-[50px] h-[50px]" src="/images/upload/<%= userData.profile_pic %>" alt="profile pic." />
-            <h1 class="text-2xl">Welcome <%= userData.name.toLowerCase() %>
+            <h1 class="text-2xl">Welcome <span class="text-green-400 font-extrabold"> <%= userData.name.toUpperCase() %> </span>
             </h1>
         </div>
         <a href="/logout" class="font-bold text-lg text-green-400 underline hover:text-green-600">Logout</a>
     </div>
     <div class="ml-5 flex flex-col justify-center items-center">
         <div class="relative w-screen px-4 py-2">
-            <h2 class="text-center font-bold text-2xl text-green-400">Create Post</h2>
-            <a href="/profile/upload"
+            <h2 class="text-center font-bold text-2xl text-white">Create Post</h2>
+            <a href="/updateProfilePicture"
                 class="absolute  left-4 top-2 font-bold text-lg text-green-400 underline hover:text-green-600">
                 Change Profile Picture
             </a>
         </div>
-        <form action="/profile/createPost" class="mt-4" method="post">
+        <form action="/post/create" class="mt-4" method="post">
             <textarea rows="8" cols="60" class="outline-none border-2 rounded-lg bg-slate-200 p-2"
                 name="textContent"></textarea>
             <br><input type="submit" value="Create Post"
@@ -44,7 +44,7 @@
                     <p>
                         <%= userData.posts[i].textContent %>
                     </p>
-                    <form action="/profile/likePost/<%= userData.posts[i]._id %>" method="post" class="inline">
+                    <form action="/post/like/<%= userData.posts[i]._id %>" method="post" class="inline">
                         <button type="submit"
                             class="mt-2 rounded-md border-2 bg-green-400 hover:bg-green-600 py-1 px-5">
                             <% if(userData.posts[i].like) { %>
@@ -54,11 +54,11 @@
                                     <% } %>
                         </button>
                     </form>
-                    <form action="/profile/deletePost/<%= userData.posts[i]._id %>" method="post" class="inline">
+                    <form action="/post/delete/<%= userData.posts[i]._id %>" method="post" class="inline">
                         <button type="submit"
                             class="mt-2 rounded-md border-2 bg-green-400 hover:bg-green-600 py-1 px-5">delete</button>
                     </form>
-                    <form action="/profile/editPost/<%= userData.posts[i]._id %>" method="get" class="inline">
+                    <form action="/post/edit/<%= userData.posts[i]._id %>" method="get" class="inline">
                         <button type="submit" class="mt-2 rounded-md border-2 bg-green-400 hover:bg-green-600 py-1 px-5">Edit</button>
                     </form>
                 </div>

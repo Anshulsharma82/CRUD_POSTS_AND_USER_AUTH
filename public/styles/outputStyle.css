@@ -570,14 +570,6 @@ video {
   top: 0.5rem;
 }
 
-.right-4 {
-  right: 1rem;
-}
-
-.top-0 {
-  top: 0px;
-}
-
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -620,8 +612,8 @@ video {
   margin-top: 0.5rem;
 }
 
-.mt-28 {
-  margin-top: 7rem;
+.mt-20 {
+  margin-top: 5rem;
 }
 
 .mt-4 {
@@ -634,14 +626,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mt-20 {
-  margin-top: 5rem;
-}
-
-.block {
-  display: block;
 }
 
 .inline {
@@ -896,6 +880,10 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
 }
 
 .text-black {

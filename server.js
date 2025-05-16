@@ -6,7 +6,7 @@ dotenv.config()
 
 import dbConnect from "./database_connection.js"
 import userRouter from "./Routes/userRoute.js"
-import profileRouter from './Routes/profileRoute.js'
+import postRouter from './Routes/postRoute.js'
 import routeNotFound from "./middleware/notFound.js"
 
 const PORT = process.env.PORT;
@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 
 app.use('/',userRouter)
-app.use('/profile', profileRouter )
+app.use('/post', postRouter )
 app.use(routeNotFound)
 
 app.listen( PORT, async () => {
