@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Profile Picture</title>
+    <link href="/styles/outputStyle.css" rel="stylesheet" >
+</head>
+<body>
+    <div class="flex justify-center items-center content-center flex-col">
+        <h1 class="font-bold text-2xl bg-blue-300 w-full text-center p-2">Upload Your Latest Profile Picture</h1>
+        <form class="mt-5" action="/profile/upload" method="post" enctype="multipart/form-data">
+            <input type="file" class="border-2 " name="image"/>
+            <input type="submit" value="Upload" class="text-white border-2 p-2 px-3 bg-blue-600 rounded-md"/>
+        </form>
+    </div>
+</body>
+</html>

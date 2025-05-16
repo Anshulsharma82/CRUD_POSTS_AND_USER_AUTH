@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/styles/outputStyle.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="flex justify-center items-center h-[600px] w-[600px] my-auto mx-auto flex-col">
+        <h1 class="text-green-800 text-3xl font-bold">Login Page</h1>
+        <form action="/login" method="post"
+            class="grid grid-cols-4 gap-4 p-4 bg-slate-300 mt-8 rounded-md py-14 px-7 justify-center items-center">
+            <label class="col-span-1 text-xl">Username</label>
+            <input class="col-span-3 border border-black rounded-xl p-2" type="text" name="username"
+                placeholder="Enter usernmae" />
+            <label class="col-span-1 text-xl">Password</label>
+            <input class="col-span-3 border border-black rounded-xl p-2" type="password" name="password"
+                placeholder="Enter your password" />
+            <input class="cursor-pointer col-span-1 bg-blue-700 p-2 px-3 rounded-xl text-center text-white hoverbg-blue-900" type="submit"
+                value="Login" />
+            <a href="/" class="cursor-pointer col-span-2 underline text-blue-500 hover:text-blue-700 font-bold">Don't have an
+                account?</a>
+        </form>
+    </div>
+</body>
+
+</html>

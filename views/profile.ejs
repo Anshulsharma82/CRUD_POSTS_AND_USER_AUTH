@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/styles/outputStyle.css">
+    <style>
+
+    </style>
+</head>
+
+<body class="bg-gray-400">
+    <div class="flex justify-between items-center border-2 w-full px-8 py-4">
+        <div class="flex justify-start items-center gap-2">
+            <img class="w-[50px] h-[50px]" src="/images/upload/<%= userData.profile_pic %>" alt="profile pic." />
+            <h1 class="text-2xl">Welcome <%= userData.name.toLowerCase() %>
+            </h1>
+        </div>
+        <a href="/logout" class="font-bold text-lg text-green-400 underline hover:text-green-600">Logout</a>
+    </div>
+    <div class="ml-5 flex flex-col justify-center items-center">
+        <div class="relative w-screen px-4 py-2">
+            <h2 class="text-center font-bold text-2xl text-green-400">Create Post</h2>
+            <a href="/profile/upload"
+                class="absolute  left-4 top-2 font-bold text-lg text-green-400 underline hover:text-green-600">
+                Change Profile Picture
+            </a>
+        </div>
+        <form action="/profile/createPost" class="mt-4" method="post">
+            <textarea rows="8" cols="60" class="outline-none border-2 rounded-lg bg-slate-200 p-2"
+                name="textContent"></textarea>
+            <br><input type="submit" value="Create Post"
+                class="border-2 p-2 bg-green-400 hover:bg-green-600 text-white rounded-md" />
+        </form>
+    </div>
+    <hr class="mt-2">
+    <h2 class="text-white font-bold text-2xl mb-3 text-center">My Posts</h2>
+    <div class="ml-5 mt-5 flex gap-4 flex-wrap justify-center items-center">
+        <% if(userData.posts.length> 0) { %>
+            <% for(let i=0; i<userData.posts.length; i++) { %>
+                <div class="bg-slate-300 border-2 w-[500px] p-4 rounded-md mb-3">
+                    <p>
+                        <%= userData.posts[i].textContent %>
+                    </p>
+                    <form action="/profile/likePost/<%= userData.posts[i]._id %>" method="post" class="inline">
+                        <button type="submit"
+                            class="mt-2 rounded-md border-2 bg-green-400 hover:bg-green-600 py-1 px-5">
+                            <% if(userData.posts[i].like) { %>
+                                Unlike
+                                <% } else { %>
+                                    Like
+                                    <% } %>
+                        </button>
+                    </form>
+                    <form action="/profile/deletePost/<%= userData.posts[i]._id %>" method="post" class="inline">
+                        <button type="submit"
+                            class="mt-2 rounded-md border-2 bg-green-400 hover:bg-green-600 py-1 px-5">delete</button>
+                    </form>
+                    <form action="/profile/editPost/<%= userData.posts[i]._id %>" method="get" class="inline">
+                        <button type="submit" class="mt-2 rounded-md border-2 bg-green-400 hover:bg-green-600 py-1 px-5">Edit</button>
+                    </form>
+                </div>
+                <% } %>
+
+                    <% } else { %>
+                        <p class="text-black text-lg">No Post Created Yet.</p>
+                        <% } %>
+    </div>
+</body>
+
+</html>
