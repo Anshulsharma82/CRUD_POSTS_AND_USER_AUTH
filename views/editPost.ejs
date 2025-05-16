@@ -12,7 +12,7 @@
     </div>
     <div class="flex flex-col mt-20 items-center h-full">
         <h2 class="text-green-400 text-2xl font-bold">Edit Task</h2>
-        <form action="/profile/editPost/<%= postData._id %>" class="mt-4" method="post">
+        <form action="/post/edit/<%= postData._id %>" class="mt-4" method="post">
             <textarea rows="8" cols="60" class="outline-none border-2 rounded-lg bg-slate-200 p-2"
                 name="textContent"> <%= postData.textContent %> </textarea>
             <br><input type="submit" value="Edit Post"
