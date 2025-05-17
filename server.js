@@ -8,6 +8,7 @@ import dbConnect from "./database_connection.js"
 import userRouter from "./Routes/userRoute.js"
 import postRouter from './Routes/postRoute.js'
 import routeNotFound from "./middleware/notFound.js"
+import errorHandler from './middleware/errorHandler.js'
 
 const PORT = process.env.PORT;
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true}))
 
 app.use('/',userRouter)
 app.use('/post', postRouter )
+app.use(errorHandler)
 app.use(routeNotFound)
 
 app.listen( PORT, async () => {

@@ -1,13 +1,14 @@
 import { userModel } from '../models/userModel.js'
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
+import { createCustomError } from '../errors/customError.js'
 
-const registerUser = async(req,res) => {
+const registerUser = async(req,res, next) => {
     try {
         const {name,username,age,email,password} = req.body
         const doesUsernameExist = await userModel.find({ username })
         if(doesUsernameExist.length > 0) {
-            return res.status(400).json({msg: 'Username is in use, Please use different username'})
+            return next(createCustomError(1501,'Username is in use, Please try with different username'))
         }
 
         const genSalt = await bcrypt.genSalt(10)
@@ -29,19 +30,19 @@ const registerUser = async(req,res) => {
     }
 }
 
-const loginUser = async(req,res) => {
+const loginUser = async(req,res, next) => {
 
     try {
         const { username,password } = req.body
         const userData = await userModel.find({ username})
         if(userData.length === 0) {
-            return res.status(400).json({msg: 'Either username or password incorrect'})
+            return next(createCustomError(1502,'Either username or password incorrect'))
         }
 
         // check pwd
         const isPwdCorrect = await bcrypt.compare(password, userData[0].password)
         if(!isPwdCorrect) {
-            return res.status(400).json({msg: 'password incorrect'})
+            return next(createCustomError(1502,'Either username or password incorrect'))
         }
         
         const JWT_SECRET_TOKEN = process.env.JWT_SECRET_TOKEN;
@@ -50,7 +51,7 @@ const loginUser = async(req,res) => {
         res.status(200).redirect('profile')
     } catch (error) {
         console.log("Error in Login API::", error)
-        res.status(400).json({msg: 'Internal Server Error'})
+        res.status(500).json({msg: 'Internal Server Error'})
     }
 
 }
